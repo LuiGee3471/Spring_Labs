@@ -1,2 +1,6 @@
 .metadata/*
 .gitattributes
+/.metadata/
+SpringDI_Basic01/.settings/org.eclipse.jdt.core.prefs
+SpringDI_Basic01/.project
+SpringDI_Basic01/.classpath
