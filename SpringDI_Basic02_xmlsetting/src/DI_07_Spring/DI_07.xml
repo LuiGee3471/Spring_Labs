@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!--
+    
+    DI 문법
+    <bean id="한개의 이름(식별자)" name="여러개의 이름"> 구분자 (,) ( ) (;)
+    <bean id="" class="" name="m1, m2 m3;m4">
+    
+    ** 객체를 생성하고 필요한 객체를 주입
+    ** 주입방법: constructor injection(의무적)
+               setter injection(선택적)
+               
+    MyBean myBean = new MyBean();
+    MyBean myBean2 = new MyBean("hong");
+
+    Java 코드
+    ProtocolHandler handler = new ProtocolHandler();
+    List<MyFilter> filters = new ArrayList<MyFilter>();
+    filters.add(new EncFilter());
+    filters.add(new HeaderFilter());
+    filters.add(new ZipFilter());
+    
+    handler.setFilters(filters);
+  -->
+  <!--
+    1단계: 필요한 bean을 모두 생성한다
+    사용자가 직접 만든 클래스가 아니라 Java API가 제공하는 클래스(Collection 등)
+    setter로 주입 > Collection > XML이 제공하는 <list>, <map>, <set> 요소를 활용한다 
+   -->
+  <!-- 
+  <bean id="encFilter" class="DI_07_Spring.EncFilter"></bean>
+  <bean id="headerFilter" class="DI_07_Spring.HeaderFilter"></bean>
+  <bean id="zipFilter" class="DI_07_Spring.ZipFilter"></bean>
+  <bean id="handler" class="DI_07_Spring.ProtocolHandler">
+    <property name="filters">
+      <list>
+        <ref bean="encFilter" />
+        <ref bean="headerFilter" />
+        <ref bean="zipFilter" />
+      </list>
+    </property>
+  </bean>
+  -->
+  <!-- 2단계 -->
+  <bean id="handler" class="DI_07_Spring.ProtocolHandler">
+    <property name="filters">
+      <list> <!-- 안에서 id는 쓰지 않는다 -->
+        <bean class="DI_07_Spring.EncFilter"></bean>
+        <bean class="DI_07_Spring.HeaderFilter"></bean>
+        <bean class="DI_07_Spring.ZipFilter"></bean>
+      </list>
+    </property>
+  </bean>   
+</beans>

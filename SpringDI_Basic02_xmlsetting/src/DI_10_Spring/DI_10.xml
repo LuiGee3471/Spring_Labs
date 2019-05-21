@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!--
+    
+    DI 문법
+    <bean id="한개의 이름(식별자)" name="여러개의 이름"> 구분자 (,) ( ) (;)
+    <bean id="" class="" name="m1, m2 m3;m4">
+    
+    ** 객체를 생성하고 필요한 객체를 주입
+    ** 주입방법: constructor injection(의무적)
+               setter injection(선택적)
+
+    Java 코드
+    BookClient bookClient = new BookClient();
+    Properties prop = new Properties();
+    
+    prop.setProperty("server", "192.168.0.10");
+    prop.setProperty("connectiontimeout", "20000");
+    
+    bookClient.setConfig(prop);
+  -->
+  <bean id="bookClient" class="DI_10_Spring.BookClient">
+    <property name="config">
+      <props>
+        <prop key="server">192.168.1.10</prop>
+        <prop key="connectiontimeout">20000</prop>
+      </props>
+    </property>
+  </bean>
+</beans>

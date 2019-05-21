@@ -4,3 +4,10 @@
 SpringDI_Basic01/.settings/org.eclipse.jdt.core.prefs
 SpringDI_Basic01/.project
 SpringDI_Basic01/.classpath
+.vscode/settings.json
+SpringDI_Basic02_xmlsetting/.classpath
+SpringDI_Basic02_xmlsetting/.project
+SpringDI_Basic02_xmlsetting/.settings/org.eclipse.jdt.core.prefs
+SpringDI_Basic03_Annotation/.classpath
+SpringDI_Basic03_Annotation/.project
+SpringDI_Basic03_Annotation/.settings/org.eclipse.jdt.core.prefs

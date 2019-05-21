@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!--
+    
+    DI 문법
+    <bean id="한개의 이름(식별자)" name="여러개의 이름"> 구분자 (,) ( ) (;)
+    <bean id="" class="" name="m1, m2 m3;m4">
+    
+    ** 객체를 생성하고 필요한 객체를 주입
+    ** 주입방법: constructor injection(의무적)
+               setter injection(선택적)
+
+    Java 코드
+    ProtocolHandlerFactory factory = new ProtocolHandlerFactory();
+    Map<String, ProtocolHandler> handlers = new HashMap<String, ProtocolHandler>();
+    handlers.put("rss", new RSSHandler());
+    handlers.put("rest", new RestHandler());
+    
+    factory.setHandlers(handlers);
+  -->
+  <bean id="rssHandler" class="DI_09_Spring.RSSHandler"></bean>
+  <bean id="restHandler" class="DI_09_Spring.RestHandler"></bean>
+  <bean id="factory" class="DI_09_Spring.ProtocolHandlerFactory">
+    <property name="handlers">
+      <map> <!-- property 객체 map -->
+        <entry>
+          <key><value>rss</value></key>
+          <bean class="DI_09_Spring.RSSHandler"></bean>
+        </entry>
+        <entry>
+          <key><value>rest</value></key>
+          <bean class="DI_09_Spring.RestHandler"></bean>
+        </entry>
+      </map>
+    </property>
+  </bean>
+</beans>

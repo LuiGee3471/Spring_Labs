@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+  <!--
+    
+    DI 문법
+    <bean id="한개의 이름(식별자)" name="여러개의 이름"> 구분자 (,) ( ) (;)
+    <bean id="" class="" name="m1, m2 m3;m4">
+    
+    ** 객체를 생성하고 필요한 객체를 주입
+    ** 주입방법: constructor injection(의무적)
+               setter injection(선택적)
+
+    1. DataSourceFactory Bean
+    2. properties 파일을 read 해서
+    3. DataSourceFactory setter 통해서 read한 값을 주입
+    
+    KEY POINT
+    XML 설정 파일에서 특정 자원을 read하려면 context 객체가 필요
+    4. context 자원 사용: 
+    - XML에서 설정 >> xmlns(namespace):context
+    - xsd 문법 강제 추가
+    - context 접두어로 요소 사용 가능
+    - 파일 기반 작업
+    - ${key} >> ${jdbc.driver}
+  -->
+  <context:property-placeholder location="classpath:DI_11_Spring/jdbc.properties" />
+  <bean id="factory" class="DI_11_Spring.DataSourceFactory">
+    <property name="jdbcDriver" value="${jdbc.driver}" />
+    <property name="jdbcUrl" value="${jdbc.url}" />
+    <property name="username" value="${jdbc.username}" />
+    <property name="password" value="${jdbc.password}" />
+  </bean>
+</beans>
