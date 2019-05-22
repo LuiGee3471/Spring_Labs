@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+  <!--
+    1. Calc calc = new NewCalc();
+    2. Calc cal = (Calc) Proxy.newProxyInstance(calc.getClass().getClassLoader(), // 실제 클래스 메타 정보 
+          calc.getClass().getInterfaces(), // 행위 정보(함수)
+          new LogPrintHandler(calc));
+    3. LogPrintArouncAdvice bean
+    
+    XML 설정에 Java의 Proxy 대체 Bean 생성
+  --> 
+  <bean id="calc" class="AOP_Basic_03.NewCalc"></bean>
+  <bean id="logPrintAroundAdvice" class="AOP_Basic_03.LogPrintAroundAdvice"></bean>
+  <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyInterfaces">
+      <list>
+        <value>AOP_Basic_03.Calc</value>
+      </list>
+    </property>
+    <property name="target" ref="calc" />
+    <property name="interceptorNames">
+      <list>
+        <value>logPrintAroundAdvice</value> <!-- 보조 업무 객체 -->
+      </list>
+    </property>
+  </bean>
+</beans> 

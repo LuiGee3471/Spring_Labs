@@ -1,0 +1,9 @@
+Spring 통해서 (객체의 생성과 조립(injection))
+
+1. XML 설정을 통해서 (bean 생성, injection)
+2. XML 문서 없이도 지금과 같은 동일 작업이 가능
+  >> Java 코드 이용해서 설정과 Injection 가능 >> Java 파일 + Annotation = XML
+  >> XML 파일 필요 없음
+  
+3. XML: GenericXmlApplicationContext
+   Java: AnnotationConfigApplicationContext

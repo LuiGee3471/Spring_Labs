@@ -11,3 +11,5 @@ SpringDI_Basic02_xmlsetting/.settings/org.eclipse.jdt.core.prefs
 SpringDI_Basic03_Annotation/.classpath
 SpringDI_Basic03_Annotation/.project
 SpringDI_Basic03_Annotation/.settings/org.eclipse.jdt.core.prefs
+*.class
+*.prefs

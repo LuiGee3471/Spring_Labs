@@ -30,9 +30,19 @@
     대신
     <context:annotation-config /> 한 방이면 해결
     Annotation 필요한 모든 빈 객체를 자동 등록
-    단점) 사용하지 않는 bean도 자동 등록 
+    단점) 사용하지 않는 bean도 자동 등록
+    
+    ** @Autowired 정상 동작하지 않는 경우
+    1. Injection되는 타입의 bean 객체가 IoC 컨테이너 안에 없는 경우(exception)
+    2. IoC 컨테이너 안에 같은 타입의 객체가 여러 개 존재할 경우
+    3. IoC 컨테이너 안에 같은 타입의 객체가 여러 개 존재하더라도 
+        함수의 parameter 이름과 동일한 id를 가진 bean이 있으면 정상 동작
+        원칙) @Resource를 사용  
    -->
    <context:annotation-config />
    <bean id="recorder" class="DI_Annotation_01.Recorder"></bean>
    <bean id="monitorViewer" class="DI_Annotation_01.MonitorViewer"></bean>
+   <bean id="a" class="DI_Annotation_01.Recorder"></bean>
+   <bean id="b" class="DI_Annotation_01.Recorder"></bean>
+   <bean id="c" class="DI_Annotation_01.Recorder"></bean>
 </beans>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+  <!--
+    1. Calc calc = new NewCalc();
+    2. Calc cal = (Calc) Proxy.newProxyInstance(calc.getClass().getClassLoader(), // 실제 클래스 메타 정보 
+          calc.getClass().getInterfaces(), // 행위 정보(함수)
+          new LogPrintHandler(calc));
+    3. LogPrintArouncAdvice bean
+    
+    4. LogPrintBeforeAdvice bean 객체 생성
+    
+    5. LogPrintAfterAdvice bean 객체 생성
+    XML 설정에 Java의 Proxy 대체 Bean 생성
+    
+    실습 AOP_Basic_05까지
+    하나의 함수가 실행될 때 여러 가지 보조 업무(advice) 실행 가능
+    ** AOP_Basic_05까지는 객체가 가지는 모든 함수가 보조 업무 적용
+    ** NewCalc >> add, mul, sub 모든 함수가 Join Point, Point Cut
+    ** 특정 함수만 제한적으로 보조 관심을 적용하겠다 (point cut)
+    
+    org.springframework.aop.support.NameMatchMethodPointcut;
+    org.springframework.aop.support.DefaultPointcutAdvisor;
+    
+    AOP_Basic_07에서는 표현식으로 Pointcut 적용
+    org.springframework.aop.support.RegexpMethodPointcutAdvisor
+  --> 
+  <bean id="calc" class="AOP_Basic_07.NewCalc"></bean>
+  <bean id="logPrintAroundAdvice" class="AOP_Basic_07.LogPrintAroundAdvice"></bean>
+  <bean id="logPrintBeforeAdvice" class="AOP_Basic_07.LogPrintBeforeAdvice"></bean>
+  <bean id="logPrintAfterAdvice" class="AOP_Basic_07.LogPrintAfterAdvice"></bean>
+
+  <!-- 1단계 -->
+  <bean id="regexpMethodPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <property name="patterns">
+      <list>
+        <value>.*ad.*</value>
+        <value>.*mu.*</value>
+      </list>
+    </property>
+    <property name="advice" ref="logPrintAroundAdvice" />
+  </bean>
+  
+  <!-- 2단계 프록시 만들기 -->
+  <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyInterfaces">
+      <list>
+        <value>AOP_Basic_07.Calc</value>
+      </list>
+    </property>
+    <property name="target" ref="calc" />
+    <property name="interceptorNames">
+      <value>regexpMethodPointcutAdvisor</value>
+    </property>
+  </bean>
+</beans> 
+
