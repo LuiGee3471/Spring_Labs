@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                      http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/context 
+                      http://www.springframework.org/schema/context/spring-context.xsd">
+<!--
+XML 파일
+IoC 컨테이너에 적재될 bean 객체 생성과 주입 작업(DI)
+
+<bean id="emp" ...
+<bean name="emp emp2" ....
+
+id 속성, name 속성: 객체의 이름(식별자)
+
+******* Spring MVC에서는 id, name 속성이 mapping 주소로 변경
+id, name ==> urlPattern
+
+<bean id="/hello.htm" class="boardController">
+id="/hello.html" >> mapping 주소 
+
+>> ViewResolver의 담당 역할: view 설정을 담당
+org.springframework.web.servlet.view.InternalResourceViewResolver
+ -->
+  <bean id="/hello.htm" class="kr.or.bit.HelloController"></bean>
+  <bean id="/intro.htm" class="kr.or.bit.IntroController"></bean>
+  <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix">
+      <value>/WEB-INF/views/</value>
+    </property>
+    <property name="suffix">
+      <value>.jsp</value>
+    </property>
+  </bean>
+</beans> 
+<!-- 
+  mav.setViewName("Hello"); /WEB-INF/views + Hello + .jsp
+  view 주소값: /WEB-INF/views/Hello.jsp 
+-->

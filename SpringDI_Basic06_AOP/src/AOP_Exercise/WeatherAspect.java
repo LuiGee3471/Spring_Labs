@@ -12,10 +12,10 @@ public class WeatherAspect {
   }
 
   @Around("publicTarget()")
-  public Object printForecast(ProceedingJoinPoint joinPoint) throws Throwable {
+  public void printForecast(ProceedingJoinPoint joinPoint) throws Throwable {
     System.out.println("내일의 날씨를 알려드리겠습니다.");
     
-    Object result = joinPoint.proceed();
+    joinPoint.proceed();
     
     String className = joinPoint.getTarget().getClass().getSimpleName();
     
@@ -28,7 +28,5 @@ public class WeatherAspect {
     }
     
     System.out.println("이상 내일의 날씨였습니다.");
-    
-    return result;
   }
 }
