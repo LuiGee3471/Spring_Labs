@@ -2,13 +2,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SpringMVC = Annotaion</title>
+<title>SpringMVC = Annotation</title>
 </head>
 <body>
   <h3>Test_1</h3>
   <a href="hello.do">hello.do</a>
+  <hr>
   <h3>TEST_2: HTTP 전송: form 태그 method 구분(get, post)</h3>
   게시판 목록 페이지 링크(글쓰기)<br>
   <a href="article/newArticle.do">글쓰기(newArticle.do)</a>
+  <hr>
+  <h3>주문하기</h3>
+  <a href="order/order.do">주문하기</a>
+  <hr>
+  <h3>TEST_4: parameter 다루기 @RequestParam</h3>
+  Default: <a href="search/external.do">링크1</a> <br>
+  Default2: <a href="search/external.do?query=100">링크2</a> <br>
+  Default3: <a href="search/external.do?p=200">링크3</a> <br>
+  <hr>
+  <h3>TEST_5: 쿠키이</h3>
+  <a href="cookie/make.do">쿠키이</a> <br>
+  <a href="cookie/view.do">쿠키이</a>
+  <hr>
+  <h3>TEST_6: 업로드</h3>
+  <a href="image/upload.do">업로드</a>
 </body>
 </html>

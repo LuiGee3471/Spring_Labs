@@ -35,6 +35,50 @@
     하나의 요청 주소로 GET 방식의 요청과 POST 방식의 요청을 처리
     화면, 처리 (로그인 화면, 로그인 처리; 글쓰기 화면, 글쓰기 처리)
    -->
-   <bean class="com.controller.NewArticleController"></bean>
-   <bean class="com.service.ArticleService"></bean>
+  <bean class="com.controller.NewArticleController"></bean>
+  <bean class="com.service.ArticleService"></bean>
+  
+  <!-- TEST_3 -->
+  <bean class="com.controller.OrderController"></bean>
+  
+  <!-- TEST_4 -->
+  <!--
+  parameter 설정하기 (@RequestParam 연습하기) 
+   -->
+  <bean class="com.controller.SearchController"></bean>
+  <!-- TEST 5 -->
+  <!--
+  @CookieValue annotation 사용하기 
+   -->
+  <bean class="com.controller.CookieController"></bean>
+  
+  <!-- TEST_6 -->
+  <!--
+  파일 업로드 
+  org.springframework.web.multipart.commons.CommonsMultipartResolver
+  org.springframework.web.multipart.commons.CommonsMultipartFile
+  CommonsMultipartFile을 사용하기 위해서는 CommonsMultipartResolver Bean 객체가 IoC 컨테이너 안에 있어야 함
+  
+  CommonsMultipartResolver 역할: Upload 파일의 정보를 관리(크기, 이름 등)
+  
+  의존 객체:
+  com.springsource.org.apache.commons.fileupload
+  com.springsource.org.apache.commons.io
+  -->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="10485760" />
+  </bean>
+  <bean class="com.controller.ImageController"></bean>
+  <!--
+  <context:component-scan base-package="com.controller" />
+  선언부에 있으면
+  @Component
+  @Repository
+  @Service
+  @Controller
+  
+  annotation을 가진 class에 대해서
+  <bean id="">를 별도로 생성할 필요가 없다
+  자동으로 Bean 객체 생성 
+   -->
 </beans>

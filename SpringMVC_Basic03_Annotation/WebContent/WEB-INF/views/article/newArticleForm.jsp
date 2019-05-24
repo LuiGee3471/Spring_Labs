@@ -11,8 +11,8 @@
   <h3>form 태그에 action 주소값: 현재 URL 창에 있는 주소가 기본값</h3>
   <form method="post">
     <input type="hidden" name="parentId" value="0">
-    제목: <input type="text" name="title"><br>
-    내용: <input type="text" name="content"><br>
+    제목: <input type="text" name="title"> <br>
+    내용: <input type="text" name="content"> <br>
     <input type="submit" value="전송">
   </form>
 </body>
